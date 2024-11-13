@@ -12,4 +12,7 @@
 #
 class Actor < ApplicationRecord
   validates(:name, presence: true)
+  has_many(:characters, class_name: "Character", foreign_key: "actor_id")
+  has_many(:filmography, :through => :characters, :source => :movie)
+  #the through is for many-to-many relations... the through is the join table between the two variables, the source is the variable you're trying to pull
 end
